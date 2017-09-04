@@ -3,19 +3,26 @@
 <head>
     <meta charset="utf-8">
     
-    <title>归档 | 小雄子的博客</title>
+    <title>React中ES6方法创建组件的this | 小雄子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="description" content="每多学一点知识，就能少写一点代码">
-<meta property="og:type" content="website">
-<meta property="og:title" content="归档">
-<meta property="og:url" content="http://yoursite.com/archive/index.html">
+        <meta name="keywords" content="JavaScript,React" />
+    
+    <meta name="description" content="学习React的时候，一直为this所困扰，今天就来好好的整理一下，先看一个官方的demo :
+12345678910111213141516171819202122232425class LikeButton extends React.Component &amp;#123;  constructor() &amp;#123;    super();    this.state = &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React中ES6方法创建组件的this">
+<meta property="og:url" content="http://yoursite.com/2017/09/04/React中ES6方法创建组件的this/index.html">
 <meta property="og:site_name" content="小雄子的博客">
-<meta property="og:description" content="每多学一点知识，就能少写一点代码">
-<meta property="og:updated_time" content="2017-05-21T17:56:56.362Z">
+<meta property="og:description" content="学习React的时候，一直为this所困扰，今天就来好好的整理一下，先看一个官方的demo :
+12345678910111213141516171819202122232425class LikeButton extends React.Component &amp;#123;  constructor() &amp;#123;    super();    this.state = &amp;#123;">
+<meta property="og:image" content="http://ounf1hr8f.bkt.clouddn.com/17-9-4/18011683.jpg">
+<meta property="og:updated_time" content="2017-09-04T02:25:27.398Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="归档">
-<meta name="twitter:description" content="每多学一点知识，就能少写一点代码">
+<meta name="twitter:title" content="React中ES6方法创建组件的this">
+<meta name="twitter:description" content="学习React的时候，一直为this所困扰，今天就来好好的整理一下，先看一个官方的demo :
+12345678910111213141516171819202122232425class LikeButton extends React.Component &amp;#123;  constructor() &amp;#123;    super();    this.state = &amp;#123;">
+<meta name="twitter:image" content="http://ounf1hr8f.bkt.clouddn.com/17-9-4/18011683.jpg">
     
 
     
@@ -126,34 +133,67 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <em class="page-title-link" data-url="/archive/index.html">归档</em>
+    <a class="page-title-link" href="/categories/前端开发/">前端开发</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/前端开发/React/">React</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="page-undefined" class="article article-single article-type-page" itemscope itemprop="blogPost">
+                            <article id="post-React中ES6方法创建组件的this" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        归档
+        React中ES6方法创建组件的this
         </h1>
     
 
             </header>
         
         
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/09/04/React中ES6方法创建组件的this/" class="article-date">
+            <time datetime="2017-09-04T02:26:14.629Z" itemprop="datePublished">2017-09-04</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tags/React/">React</a>
+    </div>
+
+            </div>
+        
         
         <div class="article-entry" itemprop="articleBody">
-            
+            <p><img src="http://ounf1hr8f.bkt.clouddn.com/17-9-4/18011683.jpg" alt=""></p>
+<p>学习React的时候，一直为this所困扰，今天就来好好的整理一下，先看一个官方的demo :</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LikeButton</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>() &#123;</div><div class="line">    <span class="keyword">super</span>();</div><div class="line">    <span class="keyword">this</span>.state = &#123;</div><div class="line">      <span class="attr">liked</span>: <span class="literal">false</span></div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.handleClick = <span class="keyword">this</span>.handleClick.bind(<span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line">  handleClick() &#123;</div><div class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">liked</span>: !<span class="keyword">this</span>.state.liked&#125;);</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">const</span> text = <span class="keyword">this</span>.state.liked ? <span class="string">'liked'</span> : <span class="string">'haven\'t liked'</span>;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div onClick=&#123;this.handleClick&#125;&gt;</div><div class="line">        You &#123;text&#125; this. Click to toggle.</div><div class="line">      &lt;/div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">ReactDOM.render(</div><div class="line">  &lt;LikeButton /&gt;,</div><div class="line">  document.getElementById('example')</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>重点看第8行和第16行，在 class LikeButton extends React.Component 中我们是声明该class，因为this具体是由其上下文决定的，因此在类定义中我们无法得知this用法。 相当于是new了上面定义的类，首先调用 constructor() 函数， this.state 的this上下文就是该实例对象；同理，render() 函数中 this.state.liked 的this上下文也是该对象。问题在于 onClick={this.handleClick} ，获取该函数引用是没有问题，这里的this上下文就是该对象。</p>
+<p>这时问题来了，在原来 React.createClass 中， handleClick() 在onClick事件触发的时候，会自动绑定到LikeButton实例上，这时候该函数的this的上下文就是该实例。不过在ES6的class的写法中，Facebook取消了自动绑定，实例化LikeButton后，handleClick()的上下文是div的支撑实例（ backing instance ），而 handleClick() 原本要绑定的上下文是LikeButton的实例。因此要用到第8行的使用bind()函数改变this的上下文## 使用bind()函数改变this的上下文</p>
+<p><strong>总结起来就是：ES6方法创造的React组件并不自动为我们绑定this到当前的实例对象，第8行代码的作用就是通过bind方法让当前的实例中<code>handleClick</code>函数被调用时，this始终是指向当前组件实例。</strong></p>
+<p>对于出现的这个问题，我们有两种解决方法</p>
+<h3 id="使用bind-函数改变this的上下文"><a href="#使用bind-函数改变this的上下文" class="headerlink" title="使用bind()函数改变this的上下文"></a>使用bind()函数改变this的上下文</h3><ul>
+<li><p>可以在class声明中的constructor()函数中，使用<code>this.handleClick = this.handleClick.bind(this)</code><br>也就是我们开头提到的方法</p>
+</li>
+<li><p>除此我们也可以在具体使用该函数的地方绑定this的上下文到LikeButton实例对象，代码如下</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div onClick=&#123;<span class="keyword">this</span>.handleClick.bind(<span class="keyword">this</span>)&#125;&gt;</div><div class="line">  You &#123;text&#125; <span class="keyword">this</span>. Click to toggle.</div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure>
+<p>这种方法需要我们每次使用bind()函数绑定到组件对象上。</p>
+<h3 id="es6的箭头函数"><a href="#es6的箭头函数" class="headerlink" title="es6的箭头函数"></a>es6的箭头函数</h3><p>es6中新加入了箭头函数=&gt;，箭头函数除了方便之外还有而一个特征就是将函数的this绑定到其定义时所在的上下文。这个特征也可以帮助我们解决这个问题。使用如下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div onClick=&#123;() =&gt; <span class="keyword">this</span>.handleClick()&#125;&gt;</div><div class="line">  You &#123;text&#125; <span class="keyword">this</span>. Click to toggle.</div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure>
+
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="http://yoursite.com/archive/index.html" data-id="cj75jp8ys0011lgwi8ffjxdjt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/09/04/React中ES6方法创建组件的this/" data-id="cj75jp8w60001lgwi5gn09hqq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -262,6 +302,19 @@
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/08/12/Hueman/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Hexo主题--Human初体验</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -459,7 +512,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://yoursite.com/archive/index.html';
+    var disqus_url = 'http://yoursite.com/2017/09/04/React中ES6方法创建组件的this/';
     
     (function() {
     var dsq = document.createElement('script');
