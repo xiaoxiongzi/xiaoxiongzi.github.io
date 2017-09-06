@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>以原型对象属性方式开发轮播图插件 | 小雄子的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JavaScript" />
+    
+    <meta name="description" content="jQuery实现轮播图效果，顺便复习一下原型对象属性的书写模式。可通过new Carousel创建一个轮播图实例。
+
+创建一个carousel.js文件
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以原型对象属性方式开发轮播图插件">
+<meta property="og:url" content="http://yoursite.com/2017/09/07/以原型对象属性方式开发轮播图插件/index.html">
+<meta property="og:site_name" content="小雄子的博客">
+<meta property="og:description" content="jQuery实现轮播图效果，顺便复习一下原型对象属性的书写模式。可通过new Carousel创建一个轮播图实例。
+
+创建一个carousel.js文件
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656">
+<meta property="og:image" content="http://ounf1hr8f.bkt.clouddn.com/17-9-7/46857192.jpg">
+<meta property="og:updated_time" content="2017-09-06T17:08:44.644Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="以原型对象属性方式开发轮播图插件">
+<meta name="twitter:description" content="jQuery实现轮播图效果，顺便复习一下原型对象属性的书写模式。可通过new Carousel创建一个轮播图实例。
+
+创建一个carousel.js文件
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656">
+<meta name="twitter:image" content="http://ounf1hr8f.bkt.clouddn.com/17-9-7/46857192.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="小雄子的博客" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="http://omx21rwn1.bkt.clouddn.com/%E6%AF%94%E4%B8%A2.ico" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">编程的点点滴滴</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端开发/">前端开发</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端开发/JavaScript/">JavaScript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端开发/React/">React</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/开发工具/">开发工具</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/前端开发/">前端开发</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/前端开发/JavaScript/">JavaScript</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-以原型对象属性方式开发轮播图插件" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        以原型对象属性方式开发轮播图插件
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/09/07/以原型对象属性方式开发轮播图插件/" class="article-date">
+            <time datetime="2017-09-06T17:06:19.102Z" itemprop="datePublished">2017-09-07</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://ounf1hr8f.bkt.clouddn.com/17-9-7/46857192.jpg" alt=""></p>
+<p>jQuery实现轮播图效果，顺便复习一下原型对象属性的书写模式。可通过<code>new Carousel</code>创建一个轮播图实例。</p>
+<ul>
+<li><p>创建一个carousel.js文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//强行暴露一个变量</span></div><div class="line">    <span class="built_in">window</span>.Carousel = Carousel;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Carousel</span>(<span class="params">JSON</span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.dom             = $(<span class="string">"#"</span> + <span class="built_in">JSON</span>.id);      <span class="comment">//放置轮播图的父容器</span></div><div class="line">        <span class="keyword">this</span>.$imagesUl       = <span class="literal">null</span>;                  <span class="comment">//放置轮播图的ul</span></div><div class="line">        <span class="keyword">this</span>.$imagesUlLis    = <span class="literal">null</span>;                  <span class="comment">//放置轮播图的li</span></div><div class="line">        <span class="keyword">this</span>.$leftBtn        = <span class="literal">null</span>;                  <span class="comment">//放置轮播图左按钮            </span></div><div class="line">        <span class="keyword">this</span>.$rightBtn       = <span class="literal">null</span>;                  <span class="comment">//放置轮播图右按钮 </span></div><div class="line">        <span class="keyword">this</span>.$circleOl       = <span class="literal">null</span>;                  <span class="comment">//放置轮播的小圆点的ol</span></div><div class="line">        <span class="keyword">this</span>.$circleLis      = <span class="literal">null</span>;                  <span class="comment">//放置轮播的小圆点的li</span></div><div class="line">        <span class="keyword">this</span>.pictureLength   = <span class="built_in">JSON</span>.images.length;    <span class="comment">//图片个数</span></div><div class="line">        <span class="keyword">this</span>.image           = <span class="built_in">JSON</span>.images;           <span class="comment">//图片地址数组</span></div><div class="line">        <span class="keyword">this</span>.height          = <span class="built_in">JSON</span>.height;           <span class="comment">//高</span></div><div class="line">        <span class="keyword">this</span>.width           = <span class="built_in">JSON</span>.width;            <span class="comment">//宽</span></div><div class="line">        <span class="keyword">this</span>.leftBtn         = <span class="literal">null</span>;                  <span class="comment">//左按钮</span></div><div class="line">        <span class="keyword">this</span>.rightBtn        = <span class="literal">null</span>;                  <span class="comment">//右按钮</span></div><div class="line">        <span class="keyword">this</span>.index           = <span class="number">0</span>;                     <span class="comment">//当前轮播图的序号</span></div><div class="line">        <span class="keyword">this</span>.animateDuration = <span class="built_in">JSON</span>.animateDuration;  <span class="comment">//缓动时间</span></div><div class="line">        <span class="keyword">this</span>.interval        = <span class="built_in">JSON</span>.interval;         <span class="comment">//间隔时间</span></div><div class="line">        <span class="keyword">this</span>.timer           = <span class="literal">null</span>;                  <span class="comment">//定时器</span></div><div class="line">        </div><div class="line">        <span class="keyword">this</span>.init();                                  <span class="comment">//初始化</span></div><div class="line">        <span class="keyword">this</span>.bindEvent();                             <span class="comment">//绑定事件</span></div><div class="line">        <span class="keyword">this</span>.autoPlay()                               <span class="comment">//自动播放</span></div><div class="line">    &#125;</div><div class="line">    <span class="comment">//初始化</span></div><div class="line">    Carousel.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="comment">//创建dom树</span></div><div class="line">        <span class="keyword">this</span>.$imagesUl = $(<span class="string">"&lt;ul&gt;&lt;/ul&gt;"</span>);</div><div class="line">        <span class="keyword">this</span>.dom.append(<span class="keyword">this</span>.$imagesUl);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span> ;i&lt;<span class="keyword">this</span>.pictureLength;i++)&#123;</div><div class="line">            $(<span class="string">"&lt;li&gt;&lt;img src='"</span>+<span class="keyword">this</span>.image[i]+<span class="string">"'&gt;&lt;/li&gt;"</span>).appendTo(<span class="keyword">this</span>.$imagesUl)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">this</span>.$imagesUlLis = <span class="keyword">this</span>.$imagesUl.find(<span class="string">"li"</span>);</div><div class="line">        <span class="comment">//布局</span></div><div class="line">        <span class="keyword">this</span>.dom.css(&#123;</div><div class="line">            <span class="string">"height"</span> : <span class="keyword">this</span>.height + <span class="string">"px"</span>,</div><div class="line">            <span class="string">"width"</span> : <span class="keyword">this</span>.width + <span class="string">"px"</span>,</div><div class="line">            <span class="string">"position"</span> : <span class="string">"relative"</span>,</div><div class="line">            <span class="string">"overflow"</span> : <span class="string">"hidden"</span></div><div class="line">        &#125;)</div><div class="line">        <span class="keyword">this</span>.$imagesUlLis.css(&#123;</div><div class="line">            <span class="string">"position"</span> : <span class="string">"absolute"</span>,</div><div class="line">            <span class="string">"left"</span> : <span class="keyword">this</span>.width + <span class="string">"px"</span>,</div><div class="line">            <span class="string">"top"</span> : <span class="number">0</span>,</div><div class="line">            <span class="string">"list-style"</span> : <span class="string">"none"</span></div><div class="line">        &#125;)</div><div class="line">        <span class="keyword">this</span>.$imagesUlLis.eq(<span class="number">0</span>).css(<span class="string">"left"</span>,<span class="number">0</span>)</div><div class="line">        <span class="comment">//创建按钮</span></div><div class="line">        <span class="keyword">this</span>.$leftBtn = $(<span class="string">"&lt;a href='javascript:;' class='leftBtn'&gt;&lt;/a&gt;"</span>);</div><div class="line">        <span class="keyword">this</span>.$rightBtn = $(<span class="string">"&lt;a href='javascript:;' class='rightBtn'&gt;&lt;/a&gt;"</span>);</div><div class="line">        <span class="keyword">this</span>.$leftBtn.appendTo(<span class="keyword">this</span>.dom);</div><div class="line">        <span class="keyword">this</span>.$rightBtn.appendTo(<span class="keyword">this</span>.dom);</div><div class="line"></div><div class="line">        <span class="comment">//小圆点</span></div><div class="line">        <span class="keyword">this</span>.$circleOl =$(<span class="string">"&lt;ol class='circles'&gt;&lt;/ol&gt;"</span>);</div><div class="line">        <span class="keyword">this</span>.$circleOl.appendTo(<span class="keyword">this</span>.dom);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span> ;i&lt;<span class="keyword">this</span>.pictureLength;i++)&#123;</div><div class="line">            $(<span class="string">"&lt;li&gt;&lt;/li&gt;"</span>).appendTo(<span class="keyword">this</span>.$circleOl);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">this</span>.$circleLis = <span class="keyword">this</span>.$circleOl.find(<span class="string">"li"</span>);</div><div class="line">        <span class="keyword">this</span>.$circleLis.eq(<span class="number">0</span>).addClass(<span class="string">"current"</span>);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="comment">//绑定事件</span></div><div class="line">    Carousel.prototype.bindEvent = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line">        <span class="keyword">this</span>.$rightBtn.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">if</span>(self.$imagesUlLis.is(<span class="string">":animated"</span>))&#123;</div><div class="line">                <span class="keyword">return</span> </div><div class="line">            &#125;</div><div class="line">            self.showNext();</div><div class="line">        &#125;)</div><div class="line">        <span class="keyword">this</span>.$leftBtn.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            self.showPrev();</div><div class="line">        &#125;)</div><div class="line">        <span class="keyword">this</span>.$circleLis.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            self.show($(<span class="keyword">this</span>).index())</div><div class="line">        &#125;)</div><div class="line">        <span class="keyword">this</span>.dom.mouseenter(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            clearInterval(self.timer)</div><div class="line">        &#125;);</div><div class="line">        <span class="keyword">this</span>.dom.mouseleave(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            self.autoPlay()</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//显示下一个轮播图</span></div><div class="line">    Carousel.prototype.showNext = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.$imagesUlLis.eq(<span class="keyword">this</span>.index).animate(&#123;<span class="string">"left"</span>:-<span class="keyword">this</span>.width&#125;,<span class="keyword">this</span>.animateDuration)</div><div class="line">        <span class="keyword">this</span>.index ++ ;</div><div class="line">        <span class="keyword">this</span>.index = <span class="keyword">this</span>.index&gt;(<span class="keyword">this</span>.pictureLength<span class="number">-1</span>)?<span class="number">0</span>:<span class="keyword">this</span>.index;</div><div class="line">        <span class="keyword">this</span>.$imagesUlLis.eq(<span class="keyword">this</span>.index).css(<span class="string">"left"</span>,<span class="keyword">this</span>.width).animate(&#123;<span class="string">"left"</span>:<span class="number">0</span>&#125;,<span class="keyword">this</span>.animateDuration);</div><div class="line">        <span class="keyword">this</span>.changeCircles()</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//显示上一个轮播图</span></div><div class="line">    Carousel.prototype.showPrev = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.$imagesUlLis.eq(<span class="keyword">this</span>.index).animate(&#123;<span class="string">"left"</span>:<span class="keyword">this</span>.width&#125;,<span class="keyword">this</span>.animateDuration)</div><div class="line">        <span class="keyword">this</span>.index -- ;</div><div class="line">        <span class="keyword">this</span>.index = <span class="keyword">this</span>.index &lt; <span class="number">0</span> ?<span class="keyword">this</span>.pictureLength<span class="number">-1</span>:<span class="keyword">this</span>.index;</div><div class="line">        <span class="keyword">this</span>.$imagesUlLis.eq(<span class="keyword">this</span>.index).css(<span class="string">"left"</span>,-<span class="keyword">this</span>.width).animate(&#123;<span class="string">"left"</span>:<span class="number">0</span>&#125;,<span class="keyword">this</span>.animateDuration);</div><div class="line">        <span class="keyword">this</span>.changeCircles()</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//点击小圆点切换轮播图</span></div><div class="line">    Carousel.prototype.show = <span class="function"><span class="keyword">function</span>(<span class="params">number</span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> old = <span class="keyword">this</span>.index;</div><div class="line">        <span class="keyword">this</span>.index = number;</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.index&gt;old)&#123;</div><div class="line">            <span class="keyword">this</span>.$imagesUlLis.eq(old).animate(&#123;<span class="string">"left"</span>:-<span class="keyword">this</span>.width&#125;,<span class="keyword">this</span>.animateDuration);</div><div class="line">            <span class="keyword">this</span>.$imagesUlLis.eq(<span class="keyword">this</span>.index).css(<span class="string">"left"</span>,<span class="keyword">this</span>.width).animate(&#123;<span class="string">"left"</span>:<span class="number">0</span>&#125;,<span class="keyword">this</span>.animateDuration);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">this</span>.$imagesUlLis.eq(old).animate(&#123;<span class="string">"left"</span>:<span class="keyword">this</span>.width&#125;,<span class="keyword">this</span>.animateDuration);</div><div class="line">            <span class="keyword">this</span>.$imagesUlLis.eq(<span class="keyword">this</span>.index).css(<span class="string">"left"</span>,-<span class="keyword">this</span>.width).animate(&#123;<span class="string">"left"</span>:<span class="number">0</span>&#125;,<span class="keyword">this</span>.animateDuration);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">this</span>.changeCircles()</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//点击小圆点的状态随轮播图的切换而切换</span></div><div class="line">    Carousel.prototype.changeCircles = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.$circleLis.eq(<span class="keyword">this</span>.index).addClass(<span class="string">"current"</span>).siblings().removeClass();</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//自动播放</span></div><div class="line">    Carousel.prototype.autoPlay = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line">        <span class="keyword">this</span>.timer  =setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            self.showNext();</div><div class="line">        &#125;,<span class="keyword">this</span>.interval);</div><div class="line">    &#125;</div><div class="line">&#125;)()</div></pre></td></tr></table></figure>
+</li>
+<li><p>在html文件中引进刚才的<code>carsouel.js</code>文件,创建一个轮播图对象，附加上css样式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>轮播图<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.bootcss.com/jquery/1.11.3/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"Carousel.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">        *&#123;</div><div class="line">            padding: 0;</div><div class="line">            margin: 0;</div><div class="line">        &#125;</div><div class="line">        #lunbo&#123;</div><div class="line">            margin: 100px auto;</div><div class="line">        &#125;</div><div class="line">        .leftBtn&#123;</div><div class="line">            display: block;</div><div class="line">            width: 40px;</div><div class="line">            height: 50px;</div><div class="line">            background-color: red;</div><div class="line">            position: absolute;</div><div class="line">            left: 0;</div><div class="line">            top: 150px;</div><div class="line">            margin-top: -25px;</div><div class="line">        &#125;</div><div class="line">        .rightBtn&#123;</div><div class="line">            display: block;</div><div class="line">            width: 40px;</div><div class="line">            height: 50px;</div><div class="line">            background-color: red;</div><div class="line">            position: absolute;</div><div class="line">            left: 460px;</div><div class="line">            top: 150px;</div><div class="line">            margin-top: -25px;</div><div class="line">        &#125;</div><div class="line">        .circles&#123;</div><div class="line">            position: absolute;</div><div class="line">            top: 270px;</div><div class="line">            left: 250px;</div><div class="line">            margin-left: -68px;</div><div class="line">        &#125;</div><div class="line">        .circles li&#123;</div><div class="line">            width: 16px;</div><div class="line">            height: 16px;</div><div class="line">            border-radius: 8px;</div><div class="line">            background-color: green;</div><div class="line">            list-style: none;</div><div class="line">            float: left;</div><div class="line">            margin-left: 8px;</div><div class="line">            cursor: pointer;</div><div class="line">        &#125;</div><div class="line">        .circles li.current&#123;</div><div class="line">            background-color: white;</div><div class="line">        &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"lunbo"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">        <span class="comment">//创建轮播图实例</span></div><div class="line">        <span class="keyword">var</span> c = <span class="keyword">new</span> Carousel(&#123;</div><div class="line">            <span class="string">"id"</span> : <span class="string">"lunbo"</span>,</div><div class="line">            <span class="string">"images"</span>:[</div><div class="line">                <span class="string">"img/0.png"</span>,</div><div class="line">                <span class="string">"img/1.png"</span>,</div><div class="line">                <span class="string">"img/2.png"</span>,</div><div class="line">                <span class="string">"img/3.png"</span>,</div><div class="line">                <span class="string">"img/4.png"</span>,</div><div class="line">                <span class="string">"img/5.png"</span>,</div><div class="line">            ],</div><div class="line">            <span class="string">"height"</span> : <span class="number">300</span>,</div><div class="line">            <span class="string">"width"</span> : <span class="number">500</span>,</div><div class="line">            <span class="string">"animateDuration"</span> : <span class="number">500</span>,</div><div class="line">            <span class="string">"interval"</span> : <span class="number">3000</span> </div><div class="line">        &#125;)</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2017/09/07/以原型对象属性方式开发轮播图插件/" data-id="cj79a3u8g0000rgwi784ad250" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/09/04/React中ES6方法创建组件的this/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">React中ES6方法创建组件的this</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/07/以原型对象属性方式开发轮播图插件/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ounf1hr8f.bkt.clouddn.com/17-9-7/46857192.jpg)" alt="以原型对象属性方式开发轮播图插件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端开发/">前端开发</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端开发/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2017/09/07/以原型对象属性方式开发轮播图插件/" class="title">以原型对象属性方式开发轮播图插件</a></p>
+                            <p class="item-date"><time datetime="2017-09-06T17:06:19.102Z" itemprop="datePublished">2017-09-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/04/React中ES6方法创建组件的this/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ounf1hr8f.bkt.clouddn.com/17-9-4/18011683.jpg)" alt="React中ES6方法创建组件的this" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端开发/">前端开发</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端开发/React/">React</a></p>
+                            <p class="item-title"><a href="/2017/09/04/React中ES6方法创建组件的this/" class="title">React中ES6方法创建组件的this</a></p>
+                            <p class="item-date"><time datetime="2017-09-04T02:26:14.629Z" itemprop="datePublished">2017-09-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/08/12/Hueman/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://omx21rwn1.bkt.clouddn.com/Hueman.png)" alt="Hexo主题--Human初体验" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/开发工具/">开发工具</a></p>
+                            <p class="item-title"><a href="/2017/08/12/Hueman/" class="title">Hexo主题--Human初体验</a></p>
+                            <p class="item-date"><time datetime="2017-08-12T08:40:16.027Z" itemprop="datePublished">2017-08-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/05/21/用QGIS将shp转json/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ounf1hr8f.bkt.clouddn.com/17-9-4/54121095.jpg)" alt="用QGIS将shp转json" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/开发工具/">开发工具</a></p>
+                            <p class="item-title"><a href="/2017/05/21/用QGIS将shp转json/" class="title">用QGIS将shp转json</a></p>
+                            <p class="item-date"><time datetime="2017-05-21T14:47:16.000Z" itemprop="datePublished">2017-05-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/03/17/使用gulp编译less/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ounf1hr8f.bkt.clouddn.com/17-9-4/99653776.jpg)" alt="使用gulp编译less" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/开发工具/">开发工具</a></p>
+                            <p class="item-title"><a href="/2017/03/17/使用gulp编译less/" class="title">使用gulp编译less</a></p>
+                            <p class="item-date"><time datetime="2017-03-16T17:36:11.796Z" itemprop="datePublished">2017-03-17</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/React/">React</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发工具/">开发工具</a><span class="category-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Human/">Human</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp/">gulp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/">json</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/">less</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shp/">shp</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Human/" style="font-size: 10px;">Human</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/shp/" style="font-size: 10px;">shp</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 小雄子的博客</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2017/09/07/以原型对象属性方式开发轮播图插件/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
