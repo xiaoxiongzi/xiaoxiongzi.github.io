@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>JavaScript面向对象笔试汇总(1) | 小雄子的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JavaScript,前端,面试题" />
+    
+    <meta name="description" content="程序运行后，输出为何？1234567891011function fun()&amp;#123;    var a =1;    this.a = 2;    function fn()&amp;#123;        return this.a;    &amp;#125;    fn.a = 3;    return fn;&amp;#125;var result = fn()();console.log(result">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript面向对象笔试汇总(1)">
+<meta property="og:url" content="http://yoursite.com/2017/09/08/JavaScript面向对象笔试汇总（1）/index.html">
+<meta property="og:site_name" content="小雄子的博客">
+<meta property="og:description" content="程序运行后，输出为何？1234567891011function fun()&amp;#123;    var a =1;    this.a = 2;    function fn()&amp;#123;        return this.a;    &amp;#125;    fn.a = 3;    return fn;&amp;#125;var result = fn()();console.log(result">
+<meta property="og:image" content="http://ounf1hr8f.bkt.clouddn.com/17-9-7/39262440.jpg">
+<meta property="og:updated_time" content="2017-09-07T16:11:15.921Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript面向对象笔试汇总(1)">
+<meta name="twitter:description" content="程序运行后，输出为何？1234567891011function fun()&amp;#123;    var a =1;    this.a = 2;    function fn()&amp;#123;        return this.a;    &amp;#125;    fn.a = 3;    return fn;&amp;#125;var result = fn()();console.log(result">
+<meta name="twitter:image" content="http://ounf1hr8f.bkt.clouddn.com/17-9-7/39262440.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="小雄子的博客" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="http://omx21rwn1.bkt.clouddn.com/%E6%AF%94%E4%B8%A2.ico" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">编程的点点滴滴</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端开发/">前端开发</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端开发/JavaScript/">JavaScript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端开发/React/">React</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/开发工具/">开发工具</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/前端开发/">前端开发</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/前端开发/JavaScript/">JavaScript</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-JavaScript面向对象笔试汇总（1）" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        JavaScript面向对象笔试汇总(1)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/09/08/JavaScript面向对象笔试汇总（1）/" class="article-date">
+            <time datetime="2017-09-07T16:10:13.813Z" itemprop="datePublished">2017-09-08</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/面试题/">面试题</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://ounf1hr8f.bkt.clouddn.com/17-9-7/39262440.jpg" alt=""></p>
+<ul>
+<li><strong>程序运行后，输出为何？</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> a =<span class="number">1</span>;</div><div class="line">    <span class="keyword">this</span>.a = <span class="number">2</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.a;</div><div class="line">    &#125;</div><div class="line">    fn.a = <span class="number">3</span>;</div><div class="line">    <span class="keyword">return</span> fn;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> result = fn()();</div><div class="line"><span class="built_in">console</span>.log(result);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>解析：<code>var a = 1</code> 是一个局部变量，此时<code>fun()</code>是典型的函数直接加圆括号，所以函数的上下文就是<code>window</code>对象。第3行<code>this.a</code>就表示给全局增加了一个<code>a</code>属性，值为<code>2</code>。<br>第一次<code>fun()</code>返回一个内存函数，第二次<code>fun()</code>也是典型的函数直接加圆括号，所以上下文也是<code>window</code>对象。此时运行，返回<code>window.a</code>，因为第一次运行已经给全局设置了<code>a</code>值为<code>2</code>，所以<code>result</code>的结果最终为<code>2</code>。</p>
+<ul>
+<li><strong>如何在函数内部得到函数自身的属性</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//如何在里面获得函数f的属性a</span></div><div class="line">&#125;</div><div class="line">f.a = <span class="number">100</span>;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>做法就是：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="built_in">arguments</span>.callee.a);</div><div class="line">&#125;</div><div class="line">f.a = <span class="number">100</span>;</div><div class="line">f();</div></pre></td></tr></table></figure></p>
+<p>也可以这样：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="keyword">this</span>.a)</div><div class="line">&#125;</div><div class="line">f.a = <span class="number">100</span>;</div><div class="line">f.call(f);</div></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>考察数组枚举调用函数</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [fn1,fn2];</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.length;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>[<span class="number">0</span>]</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a = arr[<span class="number">0</span>]();</div><div class="line"><span class="keyword">var</span> b = arr[<span class="number">1</span>]()();</div><div class="line"><span class="built_in">console</span>.log(a);</div><div class="line"><span class="built_in">console</span>.log(b);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>首先看语句<code>arr[0]()</code>，此时是数组枚举出函数，然后调用，所以函数里面的<code>this</code>是数组，也就是<code>this.length</code>要返回的是数组的长度2。<br>第二条语句<code>arr[1]()()</code>表示<code>fn2()</code>运行得到的结果再运行，此时看一下<code>arr[1]()</code>,表示的是数组枚举出来然后运行，此时函数里面的<code>this</code>是数组，返回<code>fn1</code>。第二个圆括号就是<code>fn1</code>直接加圆括号运行，<code>this</code>就是<code>window</code>对象，此时window的length属性值为<code>0</code>(测试为0，具体原因不清楚)。因此最终的输出结果使<code>2</code>和<code>0</code>。</p>
+<ul>
+<li><strong>程序运行后，输出什么</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    <span class="attr">a</span> : <span class="number">2</span>,</div><div class="line">    <span class="attr">fn</span> : (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.a = <span class="number">3</span>;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.a;</div><div class="line">        &#125;</div><div class="line">    &#125;)()</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> fn = obj.fn;</div><div class="line"><span class="keyword">var</span> result1 = obj.fn();</div><div class="line"><span class="keyword">var</span> result2 = fn();</div><div class="line"><span class="built_in">console</span>.log(result1);</div><div class="line"><span class="built_in">console</span>.log(result2);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>解析：首先我们得明白IIFE的执行时机是什么，就是一个对象定义的时候，如果值时表达式，那么在定义的时候，就已经执行掉了，比如下面的程序，先弹出”你好”，再弹出”么么哒”<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    <span class="attr">a</span> : (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        alert(<span class="string">"你好"</span>)</div><div class="line">    &#125;)()</div><div class="line">&#125;</div><div class="line">alert(<span class="string">"么么哒"</span>);</div></pre></td></tr></table></figure></p>
+<p>再看我们的题目，程序执行到第5行的IIFE时，<code>this</code>表示<code>window</code>对象，此时全局的<code>a</code>属性就变成了3。第12行，<code>obj.fn()</code> ，<code>this</code>指向<code>obj</code>。此时a为2。第13行，<code>var fn = obj.fn()</code>,再执行<code>fn()</code> ，此时<code>this</code>就是<code>window</code>对象，因此结果为2和3。</p>
+<ul>
+<li><p><strong>给页面上的方形盒子添加onmousemove事件监听，请在图中画出表示event.clientY值的线段并标注1，画出document.documentElement.clientHeight的线段并标注2，画出document.body.scrollTop的线段并标注3：</strong><br><img src="http://ounf1hr8f.bkt.clouddn.com/17-9-7/61686542.jpg" alt=""></p>
+</li>
+<li><p><strong>以下程序会弹出什么</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    fun2(<span class="built_in">arguments</span>)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun2</span>(<span class="params">a,b,c,d</span>)</span>&#123;</div><div class="line">    alert(<span class="string">"a"</span>);</div><div class="line">    alert(<span class="string">"b"</span>);</div><div class="line">    alert(<span class="string">"c"</span>);</div><div class="line">    alert(<span class="string">"d"</span>);</div><div class="line">&#125;</div><div class="line">fun1(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>依次弹出[object Argument]，undefined，undefined，undefined。因为第一行的arguments实际上是一个类数组。<br>要想取得预期的效果，可以这样改：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    fun2.apply(<span class="literal">null</span>,<span class="built_in">arguments</span>)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun2</span>(<span class="params">a,b,c,d</span>)</span>&#123;</div><div class="line">    alert(<span class="string">"a"</span>);</div><div class="line">    alert(<span class="string">"b"</span>);</div><div class="line">    alert(<span class="string">"c"</span>);</div><div class="line">    alert(<span class="string">"d"</span>);</div><div class="line">&#125;</div><div class="line">fun1(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</div></pre></td></tr></table></figure></p>
+<p>apply的妙处就是能打开数组,比如可以用来求数组的最大值<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">2</span>,<span class="number">324</span>,<span class="number">32</span>,<span class="number">536</span>,<span class="number">863</span>,<span class="number">456</span>]</div><div class="line"><span class="built_in">Math</span>.max.apply(<span class="literal">null</span>,[arr])</div></pre></td></tr></table></figure></p>
+<ol>
+<li>程序运行2000毫秒后，控制台输出什么？<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>；</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line">    <span class="keyword">this</span>.a = <span class="number">3</span>;</div><div class="line">&#125;</div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> a = <span class="number">4</span>;</div><div class="line">    fun();</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">&#125;,<span class="number">2000</span>)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>输出的结果是3，因为第8行执行fun()的时候，this指向的是window，调到第四行改变了a的值，所以this.a为3。</p>
+<ul>
+<li><strong>试写出程序执行的结果：</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">fn,arg1,arg2,arg3</span>)</span>&#123;</div><div class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>](<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun2</span>(<span class="params">m,n</span>)</span>&#123;</div><div class="line">    alert(<span class="keyword">this</span>.length);</div><div class="line">    alert(<span class="keyword">this</span>.callee.length);</div><div class="line">    alert(<span class="built_in">arguments</span>.length);</div><div class="line">    alert(<span class="built_in">arguments</span>.callee.length)</div><div class="line">&#125;</div><div class="line">fun(fun2);</div></pre></td></tr></table></figure>
+<p>分别弹出1,4,3,2<br>解析：<br>第一个<code>alert</code>中的<code>this</code>指向<code>arguments</code>类数组的本身，此时<code>arguments</code>的长度为1，就是<code>fun(fun2)</code>的实参<code>fun2</code>。<br>第二个<code>this.callee.length</code>指向的是<code>fun</code>的形参<code>fun(fn,arg1,arg2,arg3)</code>的长度，所以为4。<br>第三个<code>arguments.length</code>是<code>arguments[0](1,2,3)</code>实参的长度，所以为3。<br>第四个<code>arguments.callee.length</code>是<code>fun2(m,n)</code>的形参的长度，所以为2。</p>
+<ul>
+<li><strong>试写出程序的执行结果</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> m = <span class="number">10</span>;</div><div class="line"><span class="keyword">var</span> obj1 = &#123;</div><div class="line">    <span class="attr">m</span> : <span class="number">20</span>,</div><div class="line">    <span class="attr">fn</span> : (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.m *= <span class="number">2</span>;</div><div class="line">        m = <span class="number">5</span>;  <span class="comment">//注意这里并没有把window的属性m改为5，因为它的下一行有变量声明提升的作用</span></div><div class="line">        <span class="keyword">var</span> m = <span class="number">6</span>;<span class="comment">//，所以第6行改的实际上是闭包里面的m值</span></div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">this</span>.m *= m;</div><div class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.m);</div><div class="line">        &#125;</div><div class="line">    &#125;)()</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> obj2 = &#123;</div><div class="line">    <span class="attr">m</span> : <span class="number">30</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> fn = obj1.fn;</div><div class="line">fn();</div><div class="line">obj.fn();</div><div class="line">obj.fn.call(obj2);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这道题考了闭包，this的指向，变量声明提升，立即执行函数。<br>输出结果依次为 120 ， 120， 180 。不解释了，看注释</p>
+<ul>
+<li><strong>试写出程序执行的结果</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span> <span class="keyword">instanceof</span> <span class="built_in">String</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>);</div></pre></td></tr></table></figure>
+<p>分析：<br><img src="http://ounf1hr8f.bkt.clouddn.com/17-9-7/87734164.jpg" alt=""></p>
+<ul>
+<li>任何函数都是Function new出来的。包括Object，Function也是Function new出来的。</li>
+<li>a instanceof A ，就要看A的prototype是不是在a 的原型链上。</li>
+</ul>
+<p>答案为：true ，true ，false，false，true</p>
+<ul>
+<li><strong>试写出程序执行的结果</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fun</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.a = <span class="number">5</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.a = <span class="number">10</span>;</div><div class="line">    &#125;</div><div class="line">    fun.a = <span class="number">15</span>;</div><div class="line">    <span class="keyword">return</span> fun;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> o = <span class="keyword">new</span>(<span class="keyword">new</span> Fun());</div><div class="line"><span class="built_in">console</span>.log(o.a);</div></pre></td></tr></table></figure>
+<p>解析：结果为10<br>首先我们要理解new一个函数实例的过程。第一次new Fun()的时候，并且return的是引用类型值，所以函数返回的就是里面的fun函数，此时再次new就是按照四步走，给返回的对象绑定了a属性值时10，所以输出10。</p>
+<ul>
+<li><strong>用尽可能少的代码实现字符串str 重复n次。</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> (<span class="params">str,n</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Array</span>(n+<span class="number">1</span>).join(str));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>解析：利用的就是new Array(5)就是创建一个5项的空数组，此时join.(“☆”)，得到”☆☆☆☆”。所以要加1。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2017/09/08/JavaScript面向对象笔试汇总（1）/" data-id="cj7anj0qz0006o0wijxt9424i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/09/08/观察者模式+原型链方法实现的一个小案例/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">观察者模式+原型链方法实现的一个小案例</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/08/JavaScript面向对象笔试汇总（1）/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ounf1hr8f.bkt.clouddn.com/17-9-7/39262440.jpg)" alt="JavaScript面向对象笔试汇总(1)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端开发/">前端开发</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端开发/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2017/09/08/JavaScript面向对象笔试汇总（1）/" class="title">JavaScript面向对象笔试汇总(1)</a></p>
+                            <p class="item-date"><time datetime="2017-09-07T16:10:13.813Z" itemprop="datePublished">2017-09-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/08/观察者模式+原型链方法实现的一个小案例/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ounf1hr8f.bkt.clouddn.com/17-9-7/73122516.jpg)" alt="观察者模式+原型链方法实现的一个小案例" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端开发/">前端开发</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端开发/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2017/09/08/观察者模式+原型链方法实现的一个小案例/" class="title">观察者模式+原型链方法实现的一个小案例</a></p>
+                            <p class="item-date"><time datetime="2017-09-07T16:01:49.996Z" itemprop="datePublished">2017-09-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/07/关于原型链的一道面试题的思考/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ounf1hr8f.bkt.clouddn.com/17-9-7/32531361.jpg)" alt="关于原型链的一道面试题的思考" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端开发/">前端开发</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端开发/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2017/09/07/关于原型链的一道面试题的思考/" class="title">关于原型链的一道面试题的思考</a></p>
+                            <p class="item-date"><time datetime="2017-09-07T11:42:29.906Z" itemprop="datePublished">2017-09-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/07/DOM0级事件处理和DOM2级事件处理的区别/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ounf1hr8f.bkt.clouddn.com/17-9-7/4501622.jpg)" alt="DOM0级事件处理和DOM2级事件处理的区别" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端开发/">前端开发</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端开发/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2017/09/07/DOM0级事件处理和DOM2级事件处理的区别/" class="title">DOM0级事件处理和DOM2级事件处理的区别</a></p>
+                            <p class="item-date"><time datetime="2017-09-07T07:39:47.668Z" itemprop="datePublished">2017-09-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/07/以原型对象属性方式开发轮播图插件/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ounf1hr8f.bkt.clouddn.com/17-9-7/46857192.jpg)" alt="以原型对象属性方式开发轮播图插件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端开发/">前端开发</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端开发/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2017/09/07/以原型对象属性方式开发轮播图插件/" class="title">以原型对象属性方式开发轮播图插件</a></p>
+                            <p class="item-date"><time datetime="2017-09-06T17:06:19.102Z" itemprop="datePublished">2017-09-07</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/JavaScript/">JavaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/React/">React</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发工具/">开发工具</a><span class="category-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Human/">Human</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp/">gulp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/">json</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/">less</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shp/">shp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题/">面试题</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题，设计模式/">面试题，设计模式</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Human/" style="font-size: 10px;">Human</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/shp/" style="font-size: 10px;">shp</a> <a href="/tags/前端/" style="font-size: 16.67px;">前端</a> <a href="/tags/面试题/" style="font-size: 13.33px;">面试题</a> <a href="/tags/面试题，设计模式/" style="font-size: 10px;">面试题，设计模式</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 小雄子的博客</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2017/09/08/JavaScript面向对象笔试汇总（1）/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
