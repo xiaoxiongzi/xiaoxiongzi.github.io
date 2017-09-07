@@ -3,18 +3,26 @@
 <head>
     <meta charset="utf-8">
     
-    <title>归档: 2017/3 | 小雄子的博客</title>
+    <title>关于原型链的一道面试题的思考 | 小雄子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="description" content="每多学一点知识，就能少写一点代码">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小雄子的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2017/03/index.html">
+        <meta name="keywords" content="JavaScript,前端,面试题" />
+    
+    <meta name="description" content="这道题考了原型链，不好用文字描述，所以就画了一些图来帮助理解
+试写出程序运行结果123456789101112function A()&amp;#123;&amp;#125;;function B()&amp;#123;    return new A();&amp;#125;A.prototype = B();B.prototype = new B();var a = new A();var b = new B();conso">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于原型链的一道面试题的思考">
+<meta property="og:url" content="http://yoursite.com/2017/09/07/关于原型链的一道面试题的思考/index.html">
 <meta property="og:site_name" content="小雄子的博客">
-<meta property="og:description" content="每多学一点知识，就能少写一点代码">
+<meta property="og:description" content="这道题考了原型链，不好用文字描述，所以就画了一些图来帮助理解
+试写出程序运行结果123456789101112function A()&amp;#123;&amp;#125;;function B()&amp;#123;    return new A();&amp;#125;A.prototype = B();B.prototype = new B();var a = new A();var b = new B();conso">
+<meta property="og:image" content="http://ounf1hr8f.bkt.clouddn.com/17-9-7/32531361.jpg">
+<meta property="og:updated_time" content="2017-09-07T11:43:15.289Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小雄子的博客">
-<meta name="twitter:description" content="每多学一点知识，就能少写一点代码">
+<meta name="twitter:title" content="关于原型链的一道面试题的思考">
+<meta name="twitter:description" content="这道题考了原型链，不好用文字描述，所以就画了一些图来帮助理解
+试写出程序运行结果123456789101112function A()&amp;#123;&amp;#125;;function B()&amp;#123;    return new A();&amp;#125;A.prototype = B();B.prototype = new B();var a = new A();var b = new B();conso">
+<meta name="twitter:image" content="http://ounf1hr8f.bkt.clouddn.com/17-9-7/32531361.jpg">
     
 
     
@@ -125,133 +133,137 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-archive"></i>归档: 2017/3
+    <a class="page-title-link" href="/categories/前端开发/">前端开发</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/前端开发/JavaScript/">JavaScript</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-关于原型链的一道面试题的思考" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2017" class="archive-year"><i class="icon fa fa-calendar-o"></i>2017</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/03/17/使用gulp编译less/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ounf1hr8f.bkt.clouddn.com/17-9-4/99653776.jpg)" alt="使用gulp编译less" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2017/03/17/使用gulp编译less/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/开发工具/">开发工具</a>
-            </div>
-            <div class="date"><time datetime="2017-03-16T17:36:11.796Z" itemprop="datePublished">2017-03-17</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/03/17/使用gulp编译less/">使用gulp编译less</a>
+        关于原型链的一道面试题的思考
         </h1>
     
 
-        <p class="article-excerpt">
-            
-学习前端，有时候配置环境，真的是一把辛酸一把泪，虽然网上不乏各式各样详细的教程，但是总有那么一点点的瑕疵，或者是因为自己有些地方理解不了，结果就往往卡在一个地方一筹莫展。
-今天的收获
-通过慕课网的学习了解了less的作用和编写
-安装和配置gulp
-使用gulp编译less参考资料
-less 即学即用
-gulp详细入门教程
-gulp新手入门教程
-node.js使用gulp编译less
-
-主要步骤1
-        </p>
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/09/07/关于原型链的一道面试题的思考/" class="article-date">
+            <time datetime="2017-09-07T11:42:29.906Z" itemprop="datePublished">2017-09-07</time>
+        </a>
     </div>
-</article>
-    
 
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/03/10/我的第一篇博客-从零开始用Hexo+Github搭建博客/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ounf1hr8f.bkt.clouddn.com/17-9-4/81196330.jpg)" alt="从零开始用Hexo+Github搭建博客" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2017/03/10/我的第一篇博客-从零开始用Hexo+Github搭建博客/">0</span>
-    
-</span>
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/面试题/">面试题</a>
+    </div>
 
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/开发工具/">开发工具</a>
             </div>
-            <div class="date"><time datetime="2017-03-09T17:29:23.609Z" itemprop="datePublished">2017-03-10</time></div>
-        </div>
         
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/03/10/我的第一篇博客-从零开始用Hexo+Github搭建博客/">从零开始用Hexo+Github搭建博客</a>
-        </h1>
-    
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://ounf1hr8f.bkt.clouddn.com/17-9-7/32531361.jpg" alt="去年今日此门中，人面桃花相映红"><br>这道题考了原型链，不好用文字描述，所以就画了一些图来帮助理解</p>
+<h3 id="试写出程序运行结果"><a href="#试写出程序运行结果" class="headerlink" title="试写出程序运行结果"></a>试写出程序运行结果</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> A();</div><div class="line">&#125;</div><div class="line">A.prototype = B();</div><div class="line">B.prototype = <span class="keyword">new</span> B();</div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> A();</div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> B();</div><div class="line"><span class="built_in">console</span>.log(a._proto_==b._proto_);</div><div class="line"><span class="built_in">console</span>.log(a <span class="keyword">instanceof</span> A);</div><div class="line"><span class="built_in">console</span>.log(a <span class="keyword">instanceof</span> B);</div><div class="line"><span class="built_in">console</span>.log(b <span class="keyword">instanceof</span> A);</div></pre></td></tr></table></figure>
+<p>分析：</p>
+<ol>
+<li><p>程序执行到第5行，<code>B()</code>实际上返回一个A的实例，所以<code>A.prototype</code> 指向了一个A的实例，我们暂且称这个A的实例为实例A1。注意，此时<code>A.prototype</code>不再指向原生的<code>A.prototype</code>。但原生的<code>A.prototype</code>还存在，并不会被垃圾回收机制回收，因为它还被实例<code>A1._proto_</code>指向着。示意图如下：<br><img src="http://ounf1hr8f.bkt.clouddn.com/17-9-7/7510498.jpg" alt="图1"></p>
+</li>
+<li><p>程序执行到第6行，<code>new B()</code>同样返回一个A的实例，我们成为实例A2，此时<code>B.prototype</code> 指向了实例A2，然后实例A2的<code>_proto_</code>指向了谁呢，指向了实例A1！因为在第一步我们已经说过，构造函数<code>A.prototype</code>指向了实例A1。示例图如下：<br><img src="http://ounf1hr8f.bkt.clouddn.com/17-9-7/77623358.jpg" alt="图2"></p>
+</li>
+<li><p>再看第7行，<code>new A()</code>再次生成一个A的实例，这个实例为a。第8行，再次返回一个A的实例（前面已经说过，<code>new B()</code>其实就是<code>new A()</code>） 。最后的示例图如下：<br><img src="http://ounf1hr8f.bkt.clouddn.com/17-9-7/50692649.jpg" alt="图3"></p>
+</li>
+<li><p>所以由图3可以看出：<code>console.log(a instanceof A)</code>为<code>true</code>。</p>
+</li>
+<li>要判断最后三条语句，我们要明白<code>instanecof</code> 的判断队则是什么，可以参考王福明的<br><a href="http://www.cnblogs.com/wangfupeng1988/p/3979533.html" target="_blank" rel="external">深入理解javascript原型和闭包（5）——instanceof</a>，这里直接给出答案：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(a <span class="keyword">instanceof</span> A);  <span class="comment">//true </span></div><div class="line"><span class="built_in">console</span>.log(a <span class="keyword">instanceof</span> B);  <span class="comment">//false</span></div><div class="line"><span class="built_in">console</span>.log(b <span class="keyword">instanceof</span> A);  <span class="comment">//true</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
 
-        <p class="article-excerpt">
+        </div>
+        <footer class="article-footer">
             
-昨晚用有道云笔记写Markdown文档的时候，发现Markdown不能插入本地图片，师姐说可以在七牛申请一个服务器，然而又发现申请服务器需要一个域名，于是又去请教师姐，然后师姐说我们可以用GitHub免费搭建一个博客，不需要购买，这两天你们在学习GitHub和Git的操作，那明天的任务就把博客搭出来吧，用Hexo和GitHub……
-写在前面
-本教程主要是收集和总结了用Hexo和Github搭建博
-        </p>
+
+
+
+    <a data-url="http://yoursite.com/2017/09/07/关于原型链的一道面试题的思考/" data-id="cj7adwtsf000c6kwi2ryojxj3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
+
+    <section id="comments">
     
-        </div>
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
     
-
-
-    </div></section>
-
+    </section>
 
 
                         </div>
@@ -288,6 +300,19 @@ node.js使用gulp编译less
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/09/07/DOM0级事件处理和DOM2级事件处理的区别/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">DOM0级事件处理和DOM2级事件处理的区别</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -485,11 +510,13 @@ node.js使用gulp编译less
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'http://yoursite.com/2017/09/07/关于原型链的一道面试题的思考/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
