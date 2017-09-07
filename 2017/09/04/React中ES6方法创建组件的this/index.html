@@ -171,7 +171,7 @@
         <div class="article-entry" itemprop="articleBody">
             <p><img src="http://ounf1hr8f.bkt.clouddn.com/17-9-4/18011683.jpg" alt=""></p>
 <p>学习React的时候，一直为this所困扰，今天就来好好的整理一下，先看一个官方的demo :</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LikeButton</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>() &#123;</div><div class="line">    <span class="keyword">super</span>();</div><div class="line">    <span class="keyword">this</span>.state = &#123;</div><div class="line">      <span class="attr">liked</span>: <span class="literal">false</span></div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.handleClick = <span class="keyword">this</span>.handleClick.bind(<span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line">  handleClick() &#123;</div><div class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">liked</span>: !<span class="keyword">this</span>.state.liked&#125;);</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">const</span> text = <span class="keyword">this</span>.state.liked ? <span class="string">'liked'</span> : <span class="string">'haven\'t liked'</span>;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleClick&#125;</span>&gt;</span></span></div><div class="line">        You &#123;text&#125; this. Click to toggle.</div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">ReactDOM.render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">LikeButton</span> /&gt;</span>,</span></div><div class="line">  document.getElementById('example')</div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LikeButton</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>() &#123;</div><div class="line">    <span class="keyword">super</span>();</div><div class="line">    <span class="keyword">this</span>.state = &#123;</div><div class="line">      <span class="attr">liked</span>: <span class="literal">false</span></div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.handleClick = <span class="keyword">this</span>.handleClick.bind(<span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line">  handleClick() &#123;</div><div class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">liked</span>: !<span class="keyword">this</span>.state.liked&#125;);</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">const</span> text = <span class="keyword">this</span>.state.liked ? <span class="string">'liked'</span> : <span class="string">'haven\'t liked'</span>;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div onClick=&#123;this.handleClick&#125;&gt;</div><div class="line">        You &#123;text&#125; this. Click to toggle.</div><div class="line">      &lt;/div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">ReactDOM.render(</div><div class="line">  &lt;LikeButton /&gt;,</div><div class="line">  document.getElementById('example')</div><div class="line">);</div></pre></td></tr></table></figure>
 <p>重点看第8行和第16行，在 class LikeButton extends React.Component 中我们是声明该class，因为this具体是由其上下文决定的，因此在类定义中我们无法得知this用法。 相当于是new了上面定义的类，首先调用 constructor() 函数， this.state 的this上下文就是该实例对象；同理，render() 函数中 this.state.liked 的this上下文也是该对象。问题在于 onClick={this.handleClick} ，获取该函数引用是没有问题，这里的this上下文就是该对象。</p>
 <p>这时问题来了，在原来 React.createClass 中， handleClick() 在onClick事件触发的时候，会自动绑定到LikeButton实例上，这时候该函数的this的上下文就是该实例。不过在ES6的class的写法中，Facebook取消了自动绑定，实例化LikeButton后，handleClick()的上下文是div的支撑实例（ backing instance ），而 handleClick() 原本要绑定的上下文是LikeButton的实例。因此要用到第8行的使用bind()函数改变this的上下文## 使用bind()函数改变this的上下文</p>
 <p><strong>总结起来就是：ES6方法创造的React组件并不自动为我们绑定this到当前的实例对象，第8行代码的作用就是通过bind方法让当前的实例中<code>handleClick</code>函数被调用时，this始终是指向当前组件实例。</strong></p>
@@ -193,7 +193,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2017/09/04/React中ES6方法创建组件的this/" data-id="cj7adwts400086kwis4daohgm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/09/04/React中ES6方法创建组件的this/" data-id="cj7an6fhl0002wkwijsug9gn0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -338,6 +338,26 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2017/09/08/观察者模式+原型链方法实现的一个小案例/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ounf1hr8f.bkt.clouddn.com/17-9-7/73122516.jpg)" alt="观察者模式+原型链方法实现的一个小案例" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端开发/">前端开发</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端开发/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2017/09/08/观察者模式+原型链方法实现的一个小案例/" class="title">观察者模式+原型链方法实现的一个小案例</a></p>
+                            <p class="item-date"><time datetime="2017-09-07T16:01:49.996Z" itemprop="datePublished">2017-09-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2017/09/07/关于原型链的一道面试题的思考/" class="thumbnail">
     
     
@@ -415,26 +435,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/08/12/Hueman/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://omx21rwn1.bkt.clouddn.com/Hueman.png)" alt="Hexo主题--Human初体验" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/开发工具/">开发工具</a></p>
-                            <p class="item-title"><a href="/2017/08/12/Hueman/" class="title">Hexo主题--Human初体验</a></p>
-                            <p class="item-date"><time datetime="2017-08-12T08:40:16.027Z" itemprop="datePublished">2017-08-12</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -444,7 +444,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/JavaScript/">JavaScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/React/">React</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发工具/">开发工具</a><span class="category-list-count">4</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/JavaScript/">JavaScript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/React/">React</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发工具/">开发工具</a><span class="category-list-count">4</span></li></ul>
         </div>
     </div>
 
@@ -454,7 +454,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -464,7 +464,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Human/">Human</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp/">gulp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/">json</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/">less</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shp/">shp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题/">面试题</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Human/">Human</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp/">gulp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/">json</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/">less</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shp/">shp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题/">面试题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题，设计模式/">面试题，设计模式</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -474,7 +474,7 @@
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Human/" style="font-size: 10px;">Human</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/shp/" style="font-size: 10px;">shp</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+            <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Human/" style="font-size: 10px;">Human</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/shp/" style="font-size: 10px;">shp</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a> <a href="/tags/面试题，设计模式/" style="font-size: 10px;">面试题，设计模式</a>
         </div>
     </div>
 

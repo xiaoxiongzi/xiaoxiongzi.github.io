@@ -3,18 +3,23 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签：: Human | 小雄子的博客</title>
+    <title>观察者模式+原型链方法实现的一个小案例 | 小雄子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="description" content="每多学一点知识，就能少写一点代码">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小雄子的博客">
-<meta property="og:url" content="http://yoursite.com/tags/Human/index.html">
+        <meta name="keywords" content="JavaScript,前端,面试题，设计模式" />
+    
+    <meta name="description" content="题目描述如下：用JavaScript编写两个类，Restaurant餐馆类和Customer顾客类，要求是：餐馆类的实例拥有name餐厅名字属性和cook做饭方法，cook方法接受一个菜名字符串做参数，弹出“xxx餐厅正在为你做xxx菜”。顾客类的实例拥有enter进入餐厅的方法，接受一个餐厅实例做参数；还拥有order点菜方法，接受一个菜名字符串做参数，可以调用该餐厅的cook方法，会弹出相应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="观察者模式+原型链方法实现的一个小案例">
+<meta property="og:url" content="http://yoursite.com/2017/09/08/观察者模式+原型链方法实现的一个小案例/index.html">
 <meta property="og:site_name" content="小雄子的博客">
-<meta property="og:description" content="每多学一点知识，就能少写一点代码">
+<meta property="og:description" content="题目描述如下：用JavaScript编写两个类，Restaurant餐馆类和Customer顾客类，要求是：餐馆类的实例拥有name餐厅名字属性和cook做饭方法，cook方法接受一个菜名字符串做参数，弹出“xxx餐厅正在为你做xxx菜”。顾客类的实例拥有enter进入餐厅的方法，接受一个餐厅实例做参数；还拥有order点菜方法，接受一个菜名字符串做参数，可以调用该餐厅的cook方法，会弹出相应">
+<meta property="og:image" content="http://ounf1hr8f.bkt.clouddn.com/17-9-7/73122516.jpg">
+<meta property="og:updated_time" content="2017-09-07T16:02:44.228Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小雄子的博客">
-<meta name="twitter:description" content="每多学一点知识，就能少写一点代码">
+<meta name="twitter:title" content="观察者模式+原型链方法实现的一个小案例">
+<meta name="twitter:description" content="题目描述如下：用JavaScript编写两个类，Restaurant餐馆类和Customer顾客类，要求是：餐馆类的实例拥有name餐厅名字属性和cook做饭方法，cook方法接受一个菜名字符串做参数，弹出“xxx餐厅正在为你做xxx菜”。顾客类的实例拥有enter进入餐厅的方法，接受一个餐厅实例做参数；还拥有order点菜方法，接受一个菜名字符串做参数，可以调用该餐厅的cook方法，会弹出相应">
+<meta name="twitter:image" content="http://ounf1hr8f.bkt.clouddn.com/17-9-7/73122516.jpg">
     
 
     
@@ -125,75 +130,127 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-tag"></i>标签：: <em>Human</em>
+    <a class="page-title-link" href="/categories/前端开发/">前端开发</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/前端开发/JavaScript/">JavaScript</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-观察者模式+原型链方法实现的一个小案例" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2017" class="archive-year"><i class="icon fa fa-calendar-o"></i>2017</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/08/12/Hueman/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://omx21rwn1.bkt.clouddn.com/Hueman.png)" alt="Hexo主题--Human初体验" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2017/08/12/Hueman/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/开发工具/">开发工具</a>
-            </div>
-            <div class="date"><time datetime="2017-08-12T08:40:16.027Z" itemprop="datePublished">2017-08-12</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/08/12/Hueman/">Hexo主题--Human初体验</a>
+        观察者模式+原型链方法实现的一个小案例
         </h1>
     
 
-        <p class="article-excerpt">
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/09/08/观察者模式+原型链方法实现的一个小案例/" class="article-date">
+            <time datetime="2017-09-07T16:01:49.996Z" itemprop="datePublished">2017-09-08</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/面试题，设计模式/">面试题，设计模式</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://ounf1hr8f.bkt.clouddn.com/17-9-7/73122516.jpg" alt=""></p>
+<p>题目描述如下：<br>用JavaScript编写两个类，Restaurant餐馆类和Customer顾客类，要求是：餐馆类的实例拥有name餐厅名字属性和cook做饭方法，cook方法接受一个菜名字符串做参数，弹出“xxx餐厅正在为你做xxx菜”。顾客类的实例拥有enter进入餐厅的方法，接受一个餐厅实例做参数；还拥有order点菜方法，接受一个菜名字符串做参数，可以调用该餐厅的cook方法，会弹出相应信息。</p>
+<p>下面是实现的代码，在题目要求的基础上利用昨天学到的观察者模式添加了一个小功能，即当餐馆打烊的时候，所有在餐馆的顾客都要离开。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//餐馆类</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Restaurant</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.customer = [];</div><div class="line">&#125;;</div><div class="line">Restaurant.prototype.cook = <span class="function"><span class="keyword">function</span> (<span class="params">customer,str</span>) </span>&#123;</div><div class="line">    alert(<span class="keyword">this</span>.name + <span class="string">"餐厅正在为"</span>+ customer +<span class="string">"做"</span> + str + <span class="string">"菜"</span>);</div><div class="line">&#125;</div><div class="line">Restaurant.prototype.register = <span class="function"><span class="keyword">function</span>(<span class="params">customer</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.customer.push(customer)</div><div class="line">&#125;</div><div class="line"><span class="comment">//餐厅打烊</span></div><div class="line">Restaurant.prototype.dayang = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;<span class="keyword">this</span>.customer.length;i++)&#123;</div><div class="line">        alert(<span class="keyword">this</span>.customer[i].name + <span class="string">"走了"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//顾客</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Customer</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.restaurant = <span class="literal">null</span>;</div><div class="line">&#125;</div><div class="line">Customer.prototype.enter = <span class="function"><span class="keyword">function</span> (<span class="params">restaurant</span>) </span>&#123;</div><div class="line">    <span class="comment">//纪录自己进入的餐厅</span></div><div class="line">    <span class="keyword">this</span>.restaurant = restaurant;</div><div class="line">    <span class="keyword">this</span>.restaurant.register(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line">Customer.prototype.order = <span class="function"><span class="keyword">function</span> (<span class="params">str</span>) </span>&#123;</div><div class="line">    <span class="comment">//调用自己进入的餐厅的cook方法</span></div><div class="line">    <span class="keyword">this</span>.restaurant.cook(<span class="keyword">this</span>.name, str)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//实例化餐厅</span></div><div class="line"><span class="keyword">var</span> maidanglao = <span class="keyword">new</span> Restaurant(<span class="string">"麦当劳"</span>);</div><div class="line"><span class="keyword">var</span> kfc = <span class="keyword">new</span> Restaurant(<span class="string">"肯德基"</span>);</div><div class="line"><span class="keyword">var</span> qingfegnboazipu = <span class="keyword">new</span> Restaurant(<span class="string">"庆丰包子铺"</span>)</div><div class="line"></div><div class="line"><span class="keyword">var</span> xiaoming = <span class="keyword">new</span> Customer(<span class="string">"小明"</span>);</div><div class="line">xiaoming.enter(kfc);</div><div class="line">xiaoming.order(<span class="string">"鸡腿汉堡"</span>)</div><div class="line"></div><div class="line"><span class="keyword">var</span> xiaogang = <span class="keyword">new</span> Customer(<span class="string">"小刚"</span>);</div><div class="line">xiaogang.enter(kfc);</div><div class="line">xiaogang.order(<span class="string">"可乐"</span>)</div><div class="line"></div><div class="line"><span class="keyword">var</span> xiaohong = <span class="keyword">new</span> Customer(<span class="string">"小红"</span>);</div><div class="line">xiaohong.enter(qingfegnboazipu);</div><div class="line">xiaohong.order(<span class="string">"炒肝"</span>);</div><div class="line"></div><div class="line">kfc.dayang();</div><div class="line">qingfengbaozipu.dayang();</div></pre></td></tr></table></figure>
+<p>解析：这道题的难点在于餐厅拥有的cook方法，并不是餐厅在调用，而是用户的order在调用。<br>用户的enter方法，要纪录下来自己进入哪家餐厅，当用户order的时候，就调用自己进入的这家餐厅的cook方法。</p>
+
+        </div>
+        <footer class="article-footer">
             
-之前折腾过hexo的主题next，相信用hexo搭博客的，很多人都选用next，但在使用的过程中，总感觉next缺少了点什么，之后博客搭起来后，除了前期写了几篇文章，就把它晾在一边，昨晚在简书上搜文章时，发现一个小姐姐的博客搭的挺漂亮的，又给出了详细的搭建过程，于是今天早上一早就起来按照教程，把hexo博客的next主题给换成了hueman主题。  
-小姐姐的博客在这里 》传送门，还有很多前端干
-        </p>
+
+
+
+    <a data-url="http://yoursite.com/2017/09/08/观察者模式+原型链方法实现的一个小案例/" data-id="cj7an6fih000jwkwiafabql6s" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
+
+    <section id="comments">
     
-        </div>
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
     
-
-
-    </div></section>
-
+    </section>
 
 
                         </div>
@@ -230,6 +287,19 @@
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/09/07/关于原型链的一道面试题的思考/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">关于原型链的一道面试题的思考</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -427,11 +497,13 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'http://yoursite.com/2017/09/08/观察者模式+原型链方法实现的一个小案例/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
