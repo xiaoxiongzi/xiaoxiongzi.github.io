@@ -6,7 +6,7 @@
     <title>观察者模式+原型链方法实现的一个小案例 | 小雄子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="JavaScript,前端,面试题，设计模式" />
+        <meta name="keywords" content="JavaScript,面试题,前端,设计模式" />
     
     <meta name="description" content="题目描述如下：用JavaScript编写两个类，Restaurant餐馆类和Customer顾客类，要求是：餐馆类的实例拥有name餐厅名字属性和cook做饭方法，cook方法接受一个菜名字符串做参数，弹出“xxx餐厅正在为你做xxx菜”。顾客类的实例拥有enter进入餐厅的方法，接受一个餐厅实例做参数；还拥有order点菜方法，接受一个菜名字符串做参数，可以调用该餐厅的cook方法，会弹出相应">
 <meta property="og:type" content="article">
@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="小雄子的博客">
 <meta property="og:description" content="题目描述如下：用JavaScript编写两个类，Restaurant餐馆类和Customer顾客类，要求是：餐馆类的实例拥有name餐厅名字属性和cook做饭方法，cook方法接受一个菜名字符串做参数，弹出“xxx餐厅正在为你做xxx菜”。顾客类的实例拥有enter进入餐厅的方法，接受一个餐厅实例做参数；还拥有order点菜方法，接受一个菜名字符串做参数，可以调用该餐厅的cook方法，会弹出相应">
 <meta property="og:image" content="http://ounf1hr8f.bkt.clouddn.com/17-9-7/73122516.jpg">
-<meta property="og:updated_time" content="2017-09-07T16:02:44.228Z">
+<meta property="og:updated_time" content="2017-09-12T15:48:58.493Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="观察者模式+原型链方法实现的一个小案例">
 <meta name="twitter:description" content="题目描述如下：用JavaScript编写两个类，Restaurant餐馆类和Customer顾客类，要求是：餐馆类的实例拥有name餐厅名字属性和cook做饭方法，cook方法接受一个菜名字符串做参数，弹出“xxx餐厅正在为你做xxx菜”。顾客类的实例拥有enter进入餐厅的方法，接受一个餐厅实例做参数；还拥有order点菜方法，接受一个菜名字符串做参数，可以调用该餐厅的cook方法，会弹出相应">
@@ -159,7 +159,7 @@
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/面试题，设计模式/">面试题，设计模式</a>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/设计模式/">设计模式</a>, <a class="tag-link" href="/tags/面试题/">面试题</a>
     </div>
 
             </div>
@@ -178,7 +178,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2017/09/08/观察者模式+原型链方法实现的一个小案例/" data-id="cj7hrqxwy000nmgwic934idep" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/09/08/观察者模式+原型链方法实现的一个小案例/" data-id="cj7hrvxpo000tm8wi9gnmof8o" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -449,7 +449,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Human/">Human</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript，前端/">JavaScript，前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp/">gulp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/">json</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/">less</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shp/">shp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题/">面试题</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题，设计模式/">面试题，设计模式</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hueman/">Hueman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript，前端/">JavaScript，前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp/">gulp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/">json</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/less/">less</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shp/">shp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题/">面试题</a><span class="tag-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -459,7 +459,7 @@
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Canvas/" style="font-size: 10px;">Canvas</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Human/" style="font-size: 10px;">Human</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/JavaScript，前端/" style="font-size: 10px;">JavaScript，前端</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/shp/" style="font-size: 10px;">shp</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/面试题/" style="font-size: 15px;">面试题</a> <a href="/tags/面试题，设计模式/" style="font-size: 10px;">面试题，设计模式</a>
+            <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Canvas/" style="font-size: 10px;">Canvas</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hueman/" style="font-size: 10px;">Hueman</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/JavaScript，前端/" style="font-size: 10px;">JavaScript，前端</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/shp/" style="font-size: 10px;">shp</a> <a href="/tags/前端/" style="font-size: 13.33px;">前端</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/面试题/" style="font-size: 16.67px;">面试题</a>
         </div>
     </div>
 
